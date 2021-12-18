@@ -22,9 +22,9 @@ services:
       - 25826:25826/udp #escrita de dados
     environment:
       - DOCKER_INFLUXDB_INIT_USERNAME=admin
-      - DOCKER_INFLUXDB_INIT_PASSWORD=tallos123
-      - DOCKER_INFLUXDB_INIT_ORG=tallos
-      - DOCKER_INFLUXDB_INIT_BUCKET=tallos-test
+      - DOCKER_INFLUXDB_INIT_PASSWORD=admin
+      - DOCKER_INFLUXDB_INIT_ORG=root
+      - DOCKER_INFLUXDB_INIT_BUCKET=admin-test
     networks:
       - granafa-network
 
