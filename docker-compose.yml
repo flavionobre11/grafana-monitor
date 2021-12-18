@@ -13,18 +13,19 @@ services:
   
   influxdb:
     container_name: influxdb
-    image: influxdb:2.1.1
+    image: influxdb:2.0
     volumes:
       - $PWD/volumes/influxdb:/var/lib/influxdb2
     ports:
-      - 8083:8083 #leitura de dados
-      - 8086:8086 #escrita de dados
-      - 25826:25826/udp #escrita de dados
+      - 8083:8083 # leitura de dados
+      - 8086:8086 # escrita de dados
+      - 25826:25826/udp # escrita de dados
     environment:
       - DOCKER_INFLUXDB_INIT_USERNAME=admin
-      - DOCKER_INFLUXDB_INIT_PASSWORD=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=adminpass
       - DOCKER_INFLUXDB_INIT_ORG=root
       - DOCKER_INFLUXDB_INIT_BUCKET=admin-test
+      - DOCKER_INFLUXDB_INIT_RETENTION=24 # 24 horas
     networks:
       - granafa-network
 
