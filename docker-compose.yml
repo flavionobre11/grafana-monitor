@@ -1,0 +1,33 @@
+version: '3'
+services:
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-enterprise
+    ports:
+      - 3000:3000
+    volumes:
+      - $PWD/volumes/grafana:/var/lib/grafana
+    user: root
+    networks:
+      - granafa-network
+  
+  influxdb:
+    container_name: influxdb
+    image: influxdb:2.1.1
+    volumes:
+      - $PWD/volumes/influxdb:/var/lib/influxdb2
+    ports:
+      - 8083:8083 #leitura de dados
+      - 8086:8086 #escrita de dados
+      - 25826:25826/udp #escrita de dados
+    environment:
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=tallos123
+      - DOCKER_INFLUXDB_INIT_ORG=tallos
+      - DOCKER_INFLUXDB_INIT_BUCKET=tallos-test
+    networks:
+      - granafa-network
+
+networks:
+  granafa-network:
+    driver: bridge
